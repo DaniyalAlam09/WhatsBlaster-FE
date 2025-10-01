@@ -14,7 +14,7 @@ function App() {
     const [progress, setProgress] = useState({ current: 0, total: 0 });
     const [results, setResults] = useState(null);
     const [mockMode, setMockMode] = useState(false);
-  const [isAuthed, setIsAuthed] = useState(() => localStorage.getItem('wb_auth') === 'true');
+    const [isAuthed, setIsAuthed] = useState(() => localStorage.getItem('wb_auth') === 'true');
 
     useEffect(() => {
         // Load countries on component mount
@@ -74,11 +74,11 @@ function App() {
         setProgress({ current: 0, total: 0 });
     };
 
-  if (!isAuthed) {
-    return <Login onSuccess={() => setIsAuthed(true)} />;
-  }
+    if (!isAuthed) {
+        return <Login onSuccess={() => setIsAuthed(true)} />;
+    }
 
-  return (
+    return (
         <div className="min-h-screen bg-gray-50">
             <Toaster
                 position="top-right"
