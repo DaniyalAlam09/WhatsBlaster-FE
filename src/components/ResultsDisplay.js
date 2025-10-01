@@ -97,10 +97,10 @@ const ResultsDisplay = ({ results, onReset }) => {
 
             {/* Status Message */}
             <div className={`rounded-lg p-4 ${isSuccess
-                    ? 'bg-success-50 border border-success-200'
-                    : hasErrors
-                        ? 'bg-yellow-50 border border-yellow-200'
-                        : 'bg-error-50 border border-error-200'
+                ? 'bg-success-50 border border-success-200'
+                : hasErrors
+                    ? 'bg-yellow-50 border border-yellow-200'
+                    : 'bg-error-50 border border-error-200'
                 }`}>
                 <div className="flex items-center">
                     <div className="flex-shrink-0">
@@ -167,38 +167,38 @@ const ResultsDisplay = ({ results, onReset }) => {
                                     <h4 className="text-sm font-medium text-gray-900 mb-2">
                                         Successful Messages ({messageResults.length})
                                     </h4>
-                                    <div className="bg-gray-50 rounded-lg p-4">
+                                    <div className="bg-white rounded-xl p-4 border border-gray-300 shadow-sm">
                                         <div className="overflow-x-auto">
-                                            <table className="min-w-full divide-y divide-gray-200">
+                                            <table className="min-w-full border-collapse border border-black">
                                                 <thead className="bg-gray-100">
                                                     <tr>
-                                                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider border border-black bg-gray-50">
                                                             #
                                                         </th>
-                                                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider border border-black bg-gray-50">
                                                             Message ID
                                                         </th>
-                                                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider border border-black bg-gray-50">
                                                             Timestamp
                                                         </th>
-                                                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider border border-black bg-gray-50">
                                                             Status
                                                         </th>
                                                     </tr>
                                                 </thead>
-                                                <tbody className="bg-white divide-y divide-gray-200">
+                                                <tbody className="bg-white">
                                                     {messageResults.map((result, index) => (
                                                         <tr key={index}>
-                                                            <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
+                                                            <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900 border border-black">
                                                                 {result.attempt}
                                                             </td>
-                                                            <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500 font-mono">
+                                                            <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-700 font-mono border border-black">
                                                                 {result.messageId}
                                                             </td>
-                                                            <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">
+                                                            <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-700 border border-black">
                                                                 {new Date(result.timestamp).toLocaleString()}
                                                             </td>
-                                                            <td className="px-3 py-2 whitespace-nowrap">
+                                                            <td className="px-3 py-2 whitespace-nowrap border border-black">
                                                                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-success-100 text-success-800">
                                                                     Success
                                                                 </span>
@@ -218,38 +218,38 @@ const ResultsDisplay = ({ results, onReset }) => {
                                     <h4 className="text-sm font-medium text-gray-900 mb-2">
                                         Failed Messages ({errors.length})
                                     </h4>
-                                    <div className="bg-gray-50 rounded-lg p-4">
+                                    <div className="bg-white rounded-xl p-4 border border-gray-300 shadow-sm">
                                         <div className="overflow-x-auto">
-                                            <table className="min-w-full divide-y divide-gray-200">
+                                            <table className="min-w-full border-collapse border border-black">
                                                 <thead className="bg-gray-100">
                                                     <tr>
-                                                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider border border-black bg-gray-50">
                                                             #
                                                         </th>
-                                                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider border border-black bg-gray-50">
                                                             Error
                                                         </th>
-                                                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider border border-black bg-gray-50">
                                                             Timestamp
                                                         </th>
-                                                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider border border-black bg-gray-50">
                                                             Status
                                                         </th>
                                                     </tr>
                                                 </thead>
-                                                <tbody className="bg-white divide-y divide-gray-200">
+                                                <tbody className="bg-white">
                                                     {errors.map((error, index) => (
                                                         <tr key={index}>
-                                                            <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
+                                                            <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900 border border-black">
                                                                 {error.attempt}
                                                             </td>
-                                                            <td className="px-3 py-2 text-sm text-gray-500">
+                                                            <td className="px-3 py-2 text-sm text-gray-700 border border-black">
                                                                 {error.error}
                                                             </td>
-                                                            <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">
+                                                            <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-700 border border-black">
                                                                 {new Date(error.timestamp).toLocaleString()}
                                                             </td>
-                                                            <td className="px-3 py-2 whitespace-nowrap">
+                                                            <td className="px-3 py-2 whitespace-nowrap border border-black">
                                                                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-error-100 text-error-800">
                                                                     Failed
                                                                 </span>
