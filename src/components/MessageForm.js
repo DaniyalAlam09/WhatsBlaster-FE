@@ -116,12 +116,12 @@ const MessageForm = ({ countries, onSubmit, isLoading, isSending }) => {
 
         // If the value starts with a country code from selected country, keep it
         const selectedCountry = getSelectedCountry();
-        if (selectedCountry && cleaned.startsWith(`+${selectedCountry.dialCode}`)) {
+        if (selectedCountry && cleaned.startsWith(selectedCountry.dialCode)) {
             return cleaned;
         }
 
         // If it starts with the country code without +, add +
-        if (selectedCountry && cleaned.startsWith(selectedCountry.dialCode)) {
+        if (selectedCountry && cleaned.startsWith(selectedCountry.dialCode.replace('+', ''))) {
             return '+' + cleaned;
         }
 
@@ -148,7 +148,7 @@ const MessageForm = ({ countries, onSubmit, isLoading, isSending }) => {
             ...prev,
             country: countryCode,
             // Auto-fill phone number with country dial code if phone field is empty
-            phoneNumber: prev.phoneNumber.trim() === '' ? `${selectedCountry?.dialCode}` : prev.phoneNumber
+            phoneNumber: prev.phoneNumber.trim() === '' ? selectedCountry?.dialCode || '' : prev.phoneNumber
         }));
         setShowCountryDropdown(false);
         setCountrySearch('');
@@ -291,7 +291,7 @@ const MessageForm = ({ countries, onSubmit, isLoading, isSending }) => {
                                                                                 </div>
                                                                                 <div>
                                                                                     <div className="font-medium">{country.name}</div>
-                                                                                    <div className="text-sm text-gray-500">+{country.dialCode}</div>
+                                                                                    <div className="text-sm text-gray-500">{country.dialCode}</div>
                                                                                 </div>
                                                                             </div>
                                                                         </button>
@@ -529,7 +529,7 @@ const MessageForm = ({ countries, onSubmit, isLoading, isSending }) => {
                         </h3>
                         <div className="form-summary-content">
                             <p><strong>Phone:</strong> {formData.phoneNumber}</p>
-                            <p><strong>Country:</strong> {getSelectedCountry()?.name || 'Unknown'} ({getSelectedCountry()?.dialCode ? '+' + getSelectedCountry().dialCode : ''})</p>
+                            <p><strong>Country:</strong> {getSelectedCountry()?.name || 'Unknown'} ({getSelectedCountry()?.dialCode || ''})</p>
                             <p><strong>Messages:</strong> {formData.counter} time{formData.counter !== 1 ? 's' : ''}</p>
                             <p><strong>Delay:</strong> {formData.delay}ms between messages</p>
                             <p><strong>Total Time:</strong> ~{((formData.counter - 1) * formData.delay / 1000).toFixed(1)}s</p>
