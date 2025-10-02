@@ -23,6 +23,7 @@ function App() {
     }, []);
 
     const loadCountries = async () => {
+        setIsLoading(true);
         try {
             const response = await getCountries();
             if (response.success) {
@@ -31,6 +32,8 @@ function App() {
         } catch (error) {
             console.error('Failed to load countries:', error);
             toast.error('Failed to load countries list');
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -100,7 +103,7 @@ function App() {
                             WhatsBlaster
                         </h1>
                         <p className="text-gray-600 mb-6">
-                            Send bulk WhatsApp messages using Green-API. Enter the phone number,
+                            Send bulk WhatsApp messages at scale. Enter the phone number,
                             select the country, write your message, and specify how many times to send it.
                         </p>
 
@@ -124,12 +127,27 @@ function App() {
                             </div>
                         )}
 
-                        <MessageForm
-                            countries={countries}
-                            onSubmit={handleSendMessages}
-                            isLoading={isLoading}
-                            isSending={isSending}
-                        />
+                        {isLoading ? (
+                            <div className="space-y-4">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="skeleton h-10" />
+                                    <div className="skeleton h-10" />
+                                </div>
+                                <div className="skeleton h-28" />
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    <div className="skeleton h-10" />
+                                    <div className="skeleton h-10" />
+                                    <div className="skeleton h-10" />
+                                </div>
+                            </div>
+                        ) : (
+                            <MessageForm
+                                countries={countries}
+                                onSubmit={handleSendMessages}
+                                isLoading={isLoading}
+                                isSending={isSending}
+                            />
+                        )}
                     </div>
 
                     {isSending && (
